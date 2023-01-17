@@ -10,7 +10,7 @@ services:
       - postgres
       - redis
     environment:
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/localvocal-database
+      DATABASE_URL: postgres://postgres:ioEf2gUtCVwkr31@postgres:5432/localvocal-database
       REDIS_URL: redis://redis
       NODE_ENV: production
       JWT_SECRET: 190zGWkOV6tigIzE02AKf5QnRutNFV6e2VPWFCTRwyGK2ZWhtzlJfbR5aQoB9jv
