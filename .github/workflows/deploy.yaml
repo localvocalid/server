@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - "main"
-env:
-  SERVICE_NAME: localvocal-server
 jobs:
   deploy-server:
     if: github.ref == 'refs/heads/main'
@@ -19,7 +17,7 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           source: "."
-          target: "/var/www/${{ env.SERVICE_NAME }}"
+          target: "/var/www/server"
 
       - name: SSH to Server
         uses: appleboy/ssh-action@master
@@ -29,6 +27,6 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
-            cd /var/www/${{ env.SERVICE_NAME }}
+            cd /var/www/server
             pwd
             docker-compose up -d
