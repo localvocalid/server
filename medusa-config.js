@@ -23,10 +23,10 @@ try {
 }
 
 // CORS when consuming Medusa from admin
-const ADMIN_CORS = process.env.ADMIN_CORS || "https://localvocal-admin.onrender.com";
+const ADMIN_CORS = process.env.ADMIN_CORS || "https://admin.localvocal.id";
 
 // CORS to avoid issues when consuming Medusa from a client
-const STORE_CORS = process.env.STORE_CORS || "*";
+const STORE_CORS = process.env.STORE_CORS || "https://localvocal.id,https://www.localvocal.id";
 
 // Database URL (here we use a local database called medusa-development)
 const DATABASE_URL =
