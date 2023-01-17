@@ -1,11 +1,12 @@
 {
-  "name": "medusa-starter-default",
+  "name": "localvocal-server",
   "version": "0.0.1",
-  "description": "A starter for Medusa projects.",
-  "author": "Sebastian Rindom <skrindom@gmail.com>",
+  "description": "Localvocal server with Medusa",
+  "author": "Shaddam Amru Hasibuan <shaddam.a.h@gmail.com>",
   "license": "MIT",
   "scripts": {
     "seed": "medusa seed -f ./data/seed.json",
+    "serve": "medusa start",
     "build": "babel src -d dist --extensions \".ts,.js\"",
     "start": "medusa develop"
   },
@@ -18,9 +19,8 @@
     "medusa-payment-stripe": "^1.1.45",
     "typeorm": "^0.2.36"
   },
-  "repository": "https://github.com/medusajs/medusa-starter-default.git",
+  "repository": "https://github.com/localvocalid/server.git",
   "keywords": [
-    "sqlite",
     "ecommerce",
     "headless",
     "medusa"

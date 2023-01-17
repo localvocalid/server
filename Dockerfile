@@ -2,6 +2,8 @@ FROM node:17.1.0
 
 WORKDIR /app/medusa
 
+RUN mkdir dist
+
 COPY package.json .
 COPY develop.sh .
 COPY yarn.* .
@@ -14,8 +16,12 @@ RUN npm install -g npm@8.1.2
 
 RUN npm install -g @medusajs/medusa-cli@latest
 
-RUN npm install
+RUN npm i --only=production
 
-COPY . .
+RUN npm run build
 
-ENTRYPOINT ["./develop.sh"]
+COPY --from=builder /app/medusa/dist ./dist
+
+EXPOSE 9000
+
+ENTRYPOINT ["./develop.sh", "start"]
