@@ -25,9 +25,9 @@ RUN mkdir dist
 
 COPY package*.json ./ 
 
-COPY develop.sh .
+COPY yarn.lock ./
 
-COPY .env .
+COPY develop.sh .
 
 COPY medusa-config.js .
 
