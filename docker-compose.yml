@@ -11,7 +11,7 @@ services:
       - redis
     env_file:
       - .env
-    environtment:
+    environment:
       - NODE_ENV: ${NODE_ENV}
       - DATABASE_URL: ${DATABASE_URL}
       - REDIS_URL: ${REDIS_URL}
