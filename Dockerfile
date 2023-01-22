@@ -1,47 +1,20 @@
-FROM node:17.1.0 as builder
-
+# Install dependencies
+FROM node AS deps
 WORKDIR /app/medusa
 
-COPY . . 
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-RUN rm -rf node_modules
-
-RUN apt-get update
-
-RUN apt-get install -y python
-
-RUN npm install -g npm@8.1.2
-
-RUN npm install --loglevel=error
-
-RUN npm run build
-
-
-FROM node:17.1.0
-
+# Build the source code and run the server
+FROM node AS builder
 WORKDIR /app/medusa
 
-RUN mkdir dist
+COPY --from=deps /app/medusa/node_modules ./node_modules
+COPY . .
 
-COPY package*.json ./ 
-
-COPY yarn.lock ./
-
-COPY develop.sh .
-
-COPY medusa-config.js .
-
-RUN apt-get update
-
-RUN apt-get install -y python
-# RUN apk add --no-cache python3
-
-RUN npm install -g @medusajs/medusa-cli
-
-RUN npm i --only=production
-
-COPY --from=builder /app/medusa/dist ./dist
+RUN yarn build
+RUN yarn global add @medusajs/medusa-cli
+RUN yarn migrate
 
 EXPOSE 9000
-
-ENTRYPOINT ["./develop.sh", "start"]
+CMD ["yarn", "serve"]
