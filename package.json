@@ -21,6 +21,7 @@
     "medusa-payment-stripe": "^1.1.45",
     "medusa-plugin-mailchimp": "^1.1.44",
     "medusa-plugin-meilisearch": "^1.0.2",
+    "medusa-plugin-sendgrid": "^1.3.5",
     "typeorm": "^0.2.36"
   },
   "repository": "https://github.com/localvocalid/server.git",

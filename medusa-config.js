@@ -10,7 +10,7 @@ try {
 const ADMIN_CORS = process.env.ADMIN_CORS || 'https://admin.localvocal.id'
 const STORE_CORS = process.env.STORE_CORS || 'https://localvocal.id,https://www.localvocal.id,http://localhost:8000'
 
-// Database URL (here we use a local database called medusa-development)
+// Database URL
 const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost/medusa-store'
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379'
 
@@ -23,6 +23,10 @@ const MINIO_SECRET_KEY = process.env.MINIO_SECRET_KEY || ''
 // Meilisearch
 const MEILISEARCH_HOST = process.env.MEILISEARCH_HOST || 'http://127.0.0.1:7700'
 const MEILISEARCH_API_KEY = process.env.MEILISEARCH_API_KEY || ''
+
+// Sendgrid
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || ''
+const SENDGRID_FROM = process.env.SENDGRID_FROM || ''
 
 const plugins = [
   'medusa-fulfillment-manual',
@@ -49,6 +53,18 @@ const plugins = [
           displayedAttributes: ['title', 'description', 'variant_sku', 'thumbnail', 'handle'],
         },
       },
+    },
+  },
+  {
+    resolve: 'medusa-plugin-sendgrid',
+    options: {
+      api_key: SENDGRID_API_KEY,
+      from: SENDGRID_FROM,
+      order_placed_template: 'd-84885a0e0e4e4dc0bbcf40a50e8e3a51',
+      order_shipped_template: 'd-1785877c08234b4282976f4f6b12eb0c',
+      claim_shipment_created_template: 'd-4254ce8052244bdca1abda496d509017',
+      user_password_reset_template: 'd-63169d34111a49458aef10f7bebb6d24',
+      customer_password_reset_template: 'd-011f2461536f408683f88be285b9ad10',
     },
   },
 ]
