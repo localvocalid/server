@@ -4,28 +4,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: backend:starter
+    image: backend:1.0
     container_name: localvocal-server
     depends_on:
-      - postgres
       - redis
-    env_file:
-      - .env
     ports:
       - '9000:9000'
-
-  postgres:
-    image: postgres:10.4
-    ports:
-      - '5432:5432'
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ioEf2gUtCVwkr31
-      POSTGRES_DB: localvocal-database
   redis:
     image: redis
     expose:
       - 6379
-
 volumes:
   node_modules:
