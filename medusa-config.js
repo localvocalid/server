@@ -21,8 +21,8 @@ const MINIO_ACCESS_KEY = process.env.MINIO_ACCESS_KEY || ''
 const MINIO_SECRET_KEY = process.env.MINIO_SECRET_KEY || ''
 
 // Meilisearch
-const MEILISEARCH_HOST = process.env.MEILISEARCH_HOST || 'http://127.0.0.1:7700'
-const MEILISEARCH_API_KEY = process.env.MEILISEARCH_API_KEY || ''
+const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || ''
+const ALGOLIA_ADMIN_API_KEY = process.env.ALGOLIA_ADMIN_API_KEY || ''
 
 // Sendgrid
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY || ''
@@ -41,16 +41,14 @@ const plugins = [
     },
   },
   {
-    resolve: 'medusa-plugin-meilisearch',
+    resolve: 'medusa-plugin-algolia',
     options: {
-      config: {
-        host: MEILISEARCH_HOST,
-        apiKey: MEILISEARCH_API_KEY,
-      },
+      application_id: ALGOLIA_APP_ID,
+      admin_api_key: ALGOLIA_ADMIN_API_KEY,
       settings: {
         products: {
-          searchableAttributes: ['title', 'description', 'variant_sku'],
-          displayedAttributes: ['title', 'description', 'variant_sku', 'thumbnail', 'handle'],
+          searchableAttributes: ['title', 'description'],
+          attributesToRetrieve: ['id', 'title', 'description', 'handle', 'thumbnail', 'variants', 'variant_sku', 'options', 'collection_title', 'collection_handle', 'images'],
         },
       },
     },
