@@ -16,5 +16,5 @@ RUN yarn build
 RUN yarn global add @medusajs/medusa-cli
 RUN yarn migrate
 
-EXPOSE 9000
+EXPOSE 8001
 CMD ["yarn", "serve"]
